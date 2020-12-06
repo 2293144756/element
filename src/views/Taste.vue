@@ -65,8 +65,7 @@
 					}
 				})
 				result += this.text;
-			   this.$store.dispatch('setCode' , {
-				   code:this.$store.getters.codeInfo.code,
+			   this.$store.dispatch('selectInfo' , {
 				   selectItem:result
 			   })
 			   this.$router.go(-1)

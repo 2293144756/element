@@ -8,7 +8,7 @@
 				<span class="tag">--</span>
 			</h2>
 			<ul>
-				<li v-for="(item,index) in tablewarelist" :key="index" @click="btnclick(index , item)" :class="{blue:listIndex === index}">
+				<li v-for="(item,index) in tablewarelist" :key="index" @click="btnclick(item , index)" :class="{blue:listIndex === index}">
 					{{item}}
 				</li>
 			</ul>
@@ -30,7 +30,7 @@
 			}
 		},
 		methods:{
-			btnclick(index , item)
+			btnclick(item , index)
 			{
 				this.listIndex = index;
 				this.$store.dispatch('setCode' , {
@@ -46,7 +46,7 @@
 <style scoped="scoped">
 	.tableware {
 		width: 100%;
-		background-color: #FFFFFF;
+		background-color: #EEEEEE;
 		position: fixed;
 		bottom: 0;
 		z-index: 9999;

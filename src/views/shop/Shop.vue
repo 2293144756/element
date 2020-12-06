@@ -127,12 +127,10 @@
 		color: #AAAAAA;
 	}
 	.rst-promotion {
-		position: relative;
-		right: 22px;
 		margin-top: 10px;
-		text-align: center;
+		position: relative;
+		left: 35px;
 		font-size: 8;
 		color: #AAAAAA;
-		
 	}
 </style>

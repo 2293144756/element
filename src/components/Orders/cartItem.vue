@@ -1,9 +1,11 @@
 <template>
-	<div class="cart-item" @click="">
+	<div class="cart-item" >
 		<div class="cart-item-title">{{title}}</div>
-		<div class="cart-item-right" v-if="subHead">
-			<span>{{subHead}}</span>
-			<i class="fa fa-angle-right"></i>
+		<div class="cart-item-right" @click="$emit('btnclick')" v-if="subHead">
+			<div>
+				<span>{{subHead}}</span>
+				<i class="fa fa-angle-right"></i>
+			</div>
 		</div>
 	</div>
 </template>
@@ -16,7 +18,7 @@
 			subHead:String
 		},
 		computed:{
-		
+		   
 		}
 	}
 	

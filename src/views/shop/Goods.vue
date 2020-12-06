@@ -22,7 +22,7 @@
 		<div class="menuview">
 			<div class="menu_warp" ref="menuScroll">
 				<ul>
-					<li :class="{'current':currentHeight === index}" @click="btnClick(index)" v-for="(item,index) in shopInfo.menu" :key="index">
+					<li :class="{'current':currentHeight == index}" @click="btnClick(index)" v-for="(item,index) in shopInfo.menu" :key="index">
 						<img v-if="item.icon_url" :src="item.icon_url"/>
 						<span>{{item.name}}</span>
 					</li>
@@ -141,7 +141,7 @@
 			btnClick(index)
 			{
 			    let foodlist = this.$refs.foodScroll.getElementsByClassName('food-list-hook')
-				let el = foodlist[index+1]
+				let el = foodlist[index]
 			    
 				this.foodScroll.scrollToElement(el , 250)
 			},

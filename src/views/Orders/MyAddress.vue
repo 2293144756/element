@@ -132,7 +132,7 @@
 	.address_body {
 		position: relative;
 		box-sizing: border-box;
-		padding-left: 10px;
+		padding-left: 25px;
 		padding-top: 15px;
 		padding-bottom: 40px;
 		border-bottom: 1px #AAAAAA solid;
@@ -158,7 +158,8 @@
 	.address_text {
 		display: inline-table;
 		font-size: 14px;
-		width: 285px;
+		width: 265px;
+		margin-left:5px;
 	}
 	.address_card_edit {
 		position: absolute;
@@ -167,9 +168,13 @@
 		font-size: 16px;
 		color: #AAAAAA;
 	}
-   .address-cart-select i {
+	.address-cart-select {
+	   position: relative;
+	   top: 50px;
+	}
+    .fa-check-circle {
 	   color: #8BDA81;
-	 
+	   font-size: 20px;
    }
 	
 	

@@ -91,10 +91,10 @@
 					this.$emit('searchFixed', true)
 					break;
                     case 1:
-					this.$emit('updata' , {condation:this.filterData[1].condition})
+					this.$emit('updata' , {condition:this.filterData[1].condition})
 					break;
 					case 2:
-					this.$emit('updata' , {condation:this.filterData[2].condition})
+					this.$emit('updata' , {condition:this.filterData[2].condition})
 					break;
 					case 3:
 					this.isScreen = true;

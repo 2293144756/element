@@ -74,6 +74,7 @@
 	.brief-mode ul {
 		display: flex;
 		justify-content: space-around;
+		margin-top: 50px;
 	}
 	.brief-mode ul li {
 		flex: 1;
@@ -89,5 +90,11 @@
 	.brief-model-close img {
 		width: 30px;
 		height: 30px;
+	}
+	.brief-mode>h2 {
+		margin-top: 10px;
+	}
+	.promotion {
+		margin-top: 50px;
 	}
 </style>

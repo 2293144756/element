@@ -2,7 +2,7 @@
 	<div class="setelement">
 		<Header :isLeft="true" title="确认订单"></Header>
 		<div class="view-body">
-			<div>
+			<div class="box">
 				<!-- 收货地址-->
 				<section class="cart-address">
 					<p class="title">订单配送至
@@ -27,15 +27,15 @@
 				<cart-ground :orderInfo="$store.getters.order_info"></cart-ground>
 				
 				<section class="cart-item">
-					<cart-item @click.native="isShow=true" title="餐具份数" :subHead=" '未选择'"></cart-item>
-					<cart-item @click.native="$router.push('/taste')" title="订餐备注" :subHead=" '口味 偏好'"></cart-item>
+					<cart-item @btnclick="isShow=true" title="餐具份数" :subHead="copies"></cart-item>
+					<cart-item @btnclick="$router.push('/taste')" title="订餐备注" :subHead="selectItem"></cart-item>
 					<cart-item title="发票信息" subHead="不需要开发票"></cart-item>
 				</section>
 				<tableware :isShow="isShow" @close="isShow=false"></tableware>
 			</div>
 		</div>
 		<footer class="footer-bar">
-			<span>￥128</span>
+			<span>￥{{result}}</span>
 			<button @click="headlebtn">去支付</button>
 		</footer>
 	</div>
@@ -54,7 +54,8 @@
 		{
 			return {
 				haveAddress:false,
-				isShow:false
+				isShow:false,
+				count:0
 			}
 		},
 		components:{
@@ -79,13 +80,31 @@
 			},
 			copies()
 			{
-				return this.$store.getters.codeInfo.code
+				if(this.$store.getters.codeInfo == null)
+				{
+					return '未选择'
+				}else {
+					return this.$store.getters.codeInfo.code
+				}
 			},
 			selectItem()
 			{
-				return this.$store.getters.codeInfo.selectItem
+			   if( this.$store.getters.selectInfo == null)
+			   {
+				   return '口味 偏好'
+			   }else {
+				   return this.$store.getters.selectInfo.selectItem
+			   }
 			},
-			
+			result()
+			{
+				this.count=0
+				for(let i=0; i<this.$store.getters.order_info.selectFoods.length; i++)
+				{
+					this.count += this.$store.getters.order_info.selectFoods[i].count * this.$store.getters.order_info.selectFoods[i].activity.fixed_price + this.$store.getters.order_info.shopInfo.float_delivery_fee
+				}
+			    return this.count
+			}
 		},
 		methods:{
 			addAddress()
@@ -155,6 +174,10 @@
 		display: flex;
 		flex-direction: column;
 		flex-grow: 1;
+		overflow: auto;
+	}
+	.box {
+		height: 577px;
 		overflow: auto;
 	}
 	.cart-address {

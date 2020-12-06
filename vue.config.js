@@ -9,10 +9,10 @@
 			  //配置跨域
 			  "/api": {
 				  target:'https://element-interface-october.herokuapp.com',
-				  ws:true,
-				  changeOrigin:true,
-				  pathRewrite:{
-					  "^api":""
+				   ws:true,
+				   changeOrigin:true,
+				   pathRewrite:{
+				  	  "^api":""
 				  }
 			  }
 		  }

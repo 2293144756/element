@@ -8,7 +8,8 @@ const types={
 	SET_ADDRESS:'SET_ADDRESS',
     SET_ORDER_INFO:'ORDER_INFO',
     USER_INFO:'USER_INFO',
-	SET_CODE_INFO:'SET_CODE_INFO'
+	SET_CODE_INFO:'SET_CODE_INFO',
+	SELECT_INFO:'SELECT_INFO'
 }
 
 export default new Vuex.Store({
@@ -17,14 +18,16 @@ export default new Vuex.Store({
 	  address:'',
 	  user_info:null,
 	  order_info:null,
-	  codeInfo:null
+	  codeInfo:null,
+	  selectInfo:null
   },
   getters:{
 	  location:state=>state.location,
 	  address:state=>state.address,
 	  user_info:state=>state.user_info,
 	  order_info:state=>state.order_info,
-	  codeInfo:state=>state.codeInfo
+	  codeInfo:state=>state.codeInfo,
+	  selectInfo:state=>state.selectInfo
   },
   mutations: {
 	  [types.SET_LOCATION] (state , location)
@@ -68,9 +71,18 @@ export default new Vuex.Store({
 	  {
 		  if(payload)
 		  {
-			  state.codeInfo = payload
+			  state.codeInfo=payload
 		  }else {
 			  state.codeInfo = null;
+		  }
+	  },
+	  [types.SELECT_INFO] (state , payload)
+	  {
+		  if(payload)
+		  {
+			  state.selectInfo = payload
+		  }else {
+			  state.selectInfo = null;
 		  }
 	  }
 	  
@@ -91,6 +103,9 @@ export default new Vuex.Store({
 	  },
 	  setCode : ({commit} , payload)=>{
 		  commit(types.SET_CODE_INFO , payload)
+	  },
+	  selectInfo : ({commit} , payload)=>{
+		  commit(types.SELECT_INFO , payload)
 	  }
   },
   modules: {

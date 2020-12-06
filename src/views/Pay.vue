@@ -10,7 +10,7 @@
 				<ul class="list info-list">
 					<li>
 						<span class="order-name">{{oderInfo.name}}</span>
-						<span class="text-price">￥{{123}}</span>
+						<span class="text-price">￥{{result}}</span>
 					</li>
 				</ul>
 				<div class="title">在线支付</div>
@@ -39,12 +39,14 @@
 			return {
 				countDown:'00:15:00',
 				timer:null,
-				timerOut:false
+				timerOut:false,
+				result:0
 			}
 		},
 		created()
 		{
 			this.countTimeDown()
+			
 		},
 		computed:{
 			oderInfo()
@@ -60,29 +62,32 @@
 			{
 				let minute=14;
 				let second=59;
-				this.timer = setInterval(()=>{
-					second--
-					if(minute == '00' && second == '00')
-					{
-						this.countDown = '支付已超时'
-						this.timerOut=true
-						clearInterval(this.timer)
-					}
-					if(second == '00')
-					{
-						second=59
-						minute--
-					}
-					if(second < 10)
-					{
-						second = '0' + second
-					}
-					if(minute < 10)
-					{
-						minute = '0' + minute
-					}
-					this.countDown = '00' + ':'+ minute + ':' + second
-				},1000)
+				this.timer = setInterval(() => {
+				  second--;
+				
+				  if (second == "00" && minute == "00") {
+				    this.countDown = "订单已超时";
+				    clearInterval(this.timer);
+					this.$router.go(-1)
+				    this.timeOut = true;
+				    return;
+				  }
+				
+				  if (second == "00") {
+				    second = 59;
+				    minute--;
+				
+				    if (minute < 10) {
+				      minute = "0" + minute;
+				    }
+				  }
+				
+				  if (second < 10) {
+				    second = "0" + second;
+				  }
+				
+				  this.countDown = "00:" + minute + ":" + second;
+				}, 1000);
 			},
 			pay()
 			{
@@ -91,6 +96,7 @@
 					out_trade_no: new Date().getTime().toString(),
 					total_fee:1
 				}
+				alert('进入到pay方法中')
 				fetch('http://wwww.thenewstep.cn/wxzf/example/jsapi.php' , {
 					method:'POST',
 					headers:{

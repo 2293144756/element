@@ -98,32 +98,37 @@
 				this.page = 1;
 				this.allLoaded = false
 				this.bottomPullText = "上拉加载更多"
-				this.$axios.post('api/profile/restaurants/' + this.page + '/' + this.size).then(res => {
+				this.$axios.post('api/profile/restaurants/' + this.page + '/' + this.size , this.data).then(res => {
 					this.$refs.loadmore.onTopLoaded();
 					this.restaurants = res.data
 				})
 
 			},
-			loadMore() {
-				if (!this.allLoaded) {
+			loadMore()
+			{
+				if(!this.allLoaded)
+				{
+					//加载商户信息
 					this.page++;
 					this.$axios.post('api/profile/restaurants/' + this.page + '/' + this.size).then(res => {
+						//加载完重新渲染
 						this.$refs.loadmore.onBottomLoaded();
-						if (res.data.length > 0) {
-							res.data.forEach(item => {
+						if(res.data.length > 0)
+						{
+							res.data.forEach(item=>{
 								this.restaurants.push(item)
-							});
-							if (res.data < this.size) {
-								this.allLoaded = true;
-								this.bottomPullText = "没有更多了哦"
+							})
+							if(res.data < this.size)
+							{
+								this.allLoaded=true;
+								this.bottomPullText='没有更多数据了'
 							}
-						} else {
-							this.allLoaded = true
-							this.bottomPullText = "没有更多了哦"
+						}else {
+							this.allLoaded=true;
+							this.bottomPullText='没有更多数据了'
 						}
 					})
 				}
-
 			},
 			showFilterView(isShow) {
 				this.showFilter = isShow
@@ -132,9 +137,8 @@
 				this.showFilter = isShow
 			},
 			updata(condition) {
-				this.data = condition
-				this.data = this.data.condation
-				console.log(this.data)
+			this.data = condition;
+			this.loadData()
 			}
 		},
 		computed: {
@@ -283,7 +287,7 @@
 	.shopList-title::after {
 		margin-left: 15px;
 	}
-
+  
 	.fixedView {
 		width: 100%;
 		position: fixed;

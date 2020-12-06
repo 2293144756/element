@@ -13,7 +13,7 @@
 				</span>
 				
 			</div>
-			<Location :address="address"></Location>
+			<Location @click="selectAddress" :address="address"></Location>
 		</div>
 		<div class="area" >
 			<ul class="area_list" v-for="(item , index) in areaList" :key="index">
@@ -74,7 +74,12 @@
 			},
 			selectAddress(item)
 			{
-				this.$store.dispatch('setaddress', item.district + item.address + item.name)
+				if(item)
+				{
+					this.$store.dispatch('setaddress', item.district + item.address + item.name)
+				}else {
+					this.$store.dispatch('setaddress' , this.address)
+				}
 				this.$router.push('/home')
 			},
 		
